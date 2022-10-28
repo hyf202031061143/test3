@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wolfcode.dao.priDao">
+
+    <select id="selectPriviage" parameterType="java.lang.Integer" resultType="com.wolfcode.entity.T_privilage">
+        SELECT test_pri.*
+        FROM test_pri
+                 JOIN test_role_pri
+                      ON test_pri.pid=test_role_pri.pid
+                 JOIN test_role
+                      ON test_role_pri.rid=test_role.rid
+        WHERE  test_pri.p_pid=0 AND test_pri.pable=1 AND test_role.rid=#{rid}
+    </select>
+
+    <select id="selectSonPriviage" parameterType="java.util.Map" resultType="com.wolfcode.entity.T_privilage">
+        SELECT test_pri.*
+        FROM test_pri
+                 JOIN test_role_pri
+                      ON test_pri.pid=test_role_pri.pid
+                 JOIN test_role
+                      ON test_role_pri.rid =test_role.rid
+        WHERE test_pri.p_pid=#{pid} AND test_role_pri.rid=#{rid}
+
+    </select>
+
+
+</mapper>

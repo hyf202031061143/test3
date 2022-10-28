@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wolfcode.dao.userDao">
+    <select id="select" resultType="java.lang.Integer">
+        select count(1) from test_1
+    </select>
+<!--    查询用户名是否存在-->
+    <select id="selectUserByConditon"  parameterType="java.lang.String" resultType="com.wolfcode.entity.T_User">
+    select * from test_1 where ucode=#{str} or uphone=#{str}
+    </select>
+    <update id="updateUser" parameterType="java.util.Map" >
+        update test_1 set ustatus=#{ustatus} where ucode=#{ucode}
+    </update>
+    <update id="userUpdate" parameterType="java.util.Map" >
+        update test_1 set uname=#{uname}
+        where ucode=#{ucode}
+    </update>
+
+<update id="userUpdate1" parameterType="java.util.Map" >
+update test_1 set uaddress=#{uaddress}
+where ucode=#{ucode}
+</update>
+    <update id="userUpdatesex" parameterType="java.util.Map" >
+        update test_1 set usex=#{usex}
+        where ucode=#{ucode}
+    </update>
+    <update id="userUpdatephone" parameterType="java.util.Map" >
+        update test_1 set uphone=#{uphone}
+        where ucode=#{ucode}
+    </update>
+<!--    删除表的操作-->
+    <delete id="userDelete" parameterType="java.lang.String">
+    delete from test_1 where ucode=#{ucode}
+    </delete>
+<!--    添加表的操作-->
+    <insert id="userAdd" parameterType="java.lang.String">
+        insert into test_1(ucode) values (#{ucode})
+    </insert>
+</mapper>
+
+
+
